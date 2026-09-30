@@ -23,6 +23,7 @@ fn link_sys_lib(lib: &str, tool: &cc::Tool) {
         // fallback to dynamically
         return;
     }
+    // Convert the binary output (stdout) into a text path, and wrap it as a PathBuf (Rust's file path object).
     let path = match std::str::from_utf8(&output.stdout) {
         Ok(path) => std::path::PathBuf::from(path),
         Err(_) => return,
